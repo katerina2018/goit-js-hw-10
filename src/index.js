@@ -22,10 +22,7 @@ function fetchCount() {
         return;
     }
     API.fetchCountries(name).then(data => {
-        if (!data.length || data.status === 404 || data.message === 'Page Not Found') {
-            Notiflix.Notify.failure('Oops, there is no country with that name');
-            return;
-        } else if (data.length > 10) {
+        if (data.length > 10) {
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
         } else if (data.length >= 2 && data.length <= 10) {
             renderCountryItem(data);
